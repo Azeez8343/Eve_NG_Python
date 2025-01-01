@@ -1,0 +1,14 @@
+2024-12-31 23:36:50,218 - SSH parser -INFO - '#'*5 connection establishing '#'*5
+2024-12-31 23:36:50,805 - SSH parser -INFO - '#'*5 device connected successfully: 192.168.91.4'#'*5
+2024-12-31 23:36:50,806 - SSH parser -INFO - '#'*5 connection successful: 192.168.91.4'#'*5
+2024-12-31 23:36:50,882 - SSH parser -INFO - '#'*5 device connected successfully: 192.168.91.5'#'*5
+2024-12-31 23:36:50,883 - SSH parser -INFO - '#'*5 connection successful: 192.168.91.5'#'*5
+2024-12-31 23:36:51,038 - SSH parser -INFO - '#'*5 show run executed:192.168.91.4'#'*5
+2024-12-31 23:36:51,113 - SSH parser -INFO - '#'*5 show run executed:192.168.91.5'#'*5
+2024-12-31 23:46:27,124 - SSH parser -INFO - '#'* 5 connection establishing '#'* 5
+2024-12-31 23:46:27,705 - SSH parser -INFO - '#'* 5 device connected successfully: 192.168.91.4'#'* 5
+2024-12-31 23:46:27,705 - SSH parser -INFO - '#'* 5 device connected successfully: 192.168.91.5'#'* 5
+2024-12-31 23:46:27,706 - SSH parser -INFO - '#'* 5 connection successful: 192.168.91.4'#'* 5
+2024-12-31 23:46:27,706 - SSH parser -INFO - '#'* 5 connection successful: 192.168.91.5'#'* 5
+2024-12-31 23:46:27,934 - SSH parser -INFO - '#'* 5 show run executed:192.168.91.4'#'* 5
+2024-12-31 23:46:28,055 - SSH parser -INFO - '#'* 5 show run executed:192.168.91.5'#'* 5

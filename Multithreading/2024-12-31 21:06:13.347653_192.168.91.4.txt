@@ -1,0 +1,158 @@
+
+!Command: show running-config
+!No configuration change since last restart
+!Time: Tue Dec 31 21:01:34 2024
+
+version 10.2(3) Bios:version  
+hostname NXOS1
+vdc NXOS1 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+nv overlay evpn
+feature ospf
+feature bgp
+feature interface-vlan
+feature vn-segment-vlan-based
+feature nv overlay
+
+username admin password 5 $5$IDDJLF$cUk/PE7uHuDw1W82LjgcHlH8Gdia3RndFJLcyQvntZ.  role network-admin
+ip domain-lookup
+copp profile strict
+snmp-server user admin network-admin auth md5 364BD882B92EC4081599FEEA8132CD422DAF priv aes-128 1769D7AE9D2BA07529A2E8FA853AC0105EDC localizedV2key
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+
+fabric forwarding anycast-gateway-mac 0000.1111.2222
+vlan 1,10-12,21,101-102
+vlan 10
+  vn-segment 11111
+vlan 11
+  vn-segment 11000
+vlan 12
+  vn-segment 12000
+vlan 21
+  vn-segment 21000
+vlan 101
+  vn-segment 101101
+vlan 102
+  vn-segment 102102
+
+vrf context VRF01
+  vni 101101
+  rd auto
+  address-family ipv4 unicast
+    route-target both auto
+    route-target both auto evpn
+vrf context VRF02
+  vni 102102
+  rd auto
+  address-family ipv4 unicast
+    route-target both auto
+    route-target both auto evpn
+vrf context management
+  ip route 0.0.0.0/0 192.168.91.1
+
+interface Vlan1
+
+interface Vlan10
+  no shutdown
+  vrf member VRF02
+  ip address 11.1.1.254/24
+  fabric forwarding mode anycast-gateway
+
+interface Vlan11
+  no shutdown
+  vrf member VRF01
+  ip address 11.1.1.254/24
+  fabric forwarding mode anycast-gateway
+
+interface Vlan12
+  no shutdown
+  vrf member VRF01
+  ip address 12.1.1.254/24
+  fabric forwarding mode anycast-gateway
+
+interface Vlan21
+  no shutdown
+  vrf member VRF02
+  ip address 21.1.1.254/24
+  fabric forwarding mode anycast-gateway
+
+interface Vlan101
+  no shutdown
+  vrf member VRF01
+  ip forward
+
+interface Vlan102
+  no shutdown
+  vrf member VRF02
+  ip forward
+
+interface nve1
+  no shutdown
+  host-reachability protocol bgp
+  source-interface loopback0
+  member vni 11000
+    ingress-replication protocol bgp
+  member vni 11111
+    ingress-replication protocol bgp
+  member vni 12000
+    ingress-replication protocol bgp
+  member vni 21000
+    ingress-replication protocol bgp
+  member vni 101101 associate-vrf
+  member vni 102102 associate-vrf
+
+interface mgmt0
+  vrf member management
+  ip address 192.168.91.4/24
+
+interface loopback0
+  ip address 100.1.1.1/32
+  ip router ospf 10 area 0.0.0.0
+icam monitor scale
+
+line console
+line vty
+boot nxos bootflash:/nxos64-cs.10.2.3.F.bin 
+router ospf 10
+router bgp 65000
+  router-id 100.1.1.1
+  address-family l2vpn evpn
+  neighbor 200.1.1.1
+    remote-as 65000
+    update-source loopback0
+    address-family l2vpn evpn
+      send-community
+      send-community extended
+  vrf VRF01
+    address-family ipv4 unicast
+  vrf VRF02
+    address-family ipv4 unicast
+evpn
+  vni 11000 l2
+    rd auto
+    route-target import auto
+    route-target export auto
+  vni 11111 l2
+    rd auto
+    route-target import auto
+    route-target export auto
+  vni 12000 l2
+    rd auto
+    route-target import auto
+    route-target export auto
+  vni 21000 l2
+    rd auto
+    route-target import auto
+    route-target export auto
+
+
+
