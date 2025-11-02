@@ -1,0 +1,13 @@
+2025-11-02 12:17:11,568 [INFO] Starting Power Scan Audit on 2 devices at 2025-11-02 12:17:11
+2025-11-02 12:17:13,015 [INFO] Fan details from device 192.168.91.115: []
+2025-11-02 12:17:13,015 [INFO] Missing fan at port 0/FT3 on device 192.168.91.115
+2025-11-02 12:17:13,015 [INFO] Missing fan at port 0/FT2 on device 192.168.91.115
+2025-11-02 12:17:13,015 [INFO] Missing fan at port 0/FT1 on device 192.168.91.115
+2025-11-02 12:17:13,015 [INFO] Missing fan at port 0/FT0 on device 192.168.91.115
+2025-11-02 12:17:13,080 [INFO] Fan details from device 192.168.91.116: []
+2025-11-02 12:17:13,080 [INFO] Missing fan at port 0/FT1 on device 192.168.91.116
+2025-11-02 12:17:13,080 [INFO] Missing fan at port 0/FT0 on device 192.168.91.116
+2025-11-02 12:17:13,081 [INFO] Missing fan at port 0/FT3 on device 192.168.91.116
+2025-11-02 12:17:13,081 [INFO] Missing fan at port 0/FT2 on device 192.168.91.116
+2025-11-02 12:17:13,200 [INFO] Completed Power Scan Audit in 0:00:01.632373
+2025-11-02 12:17:13,234 [INFO] Power Scan Audit completed at 2025-11-02 12:17:13
